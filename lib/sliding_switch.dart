@@ -19,6 +19,7 @@ class SlidingSwitch extends StatefulWidget {
   final Function onTap;
   final Function onDoubleTap;
   final Function onSwipe;
+   final double cornerRadius; // New property for corner radius
 
   const SlidingSwitch({
     required this.value,
@@ -39,6 +40,7 @@ class SlidingSwitch extends StatefulWidget {
     this.background = const Color(0xffe4e5eb),
     this.buttonColor = const Color(0xfff7f5f7),
     this.inactiveColor = const Color(0xff636f7b),
+    this.cornerRadius = 20.0, // Default corner radius value
   }) : super();
   @override
   _SlidingSwitch createState() => _SlidingSwitch();
@@ -97,7 +99,8 @@ class _SlidingSwitch extends State<SlidingSwitch>
           width: widget.width,
           decoration: BoxDecoration(
               color: widget.background,
-              borderRadius: BorderRadius.circular(50)),
+              
+              borderRadius: BorderRadius.circular(widget.cornerRadius)),
           padding: EdgeInsets.all(2),
           child: Stack(children: <Widget>[
             Transform.translate(
@@ -106,7 +109,7 @@ class _SlidingSwitch extends State<SlidingSwitch>
                   height: widget.height,
                   width: widget.width * 0.5 - 4,
                   decoration: BoxDecoration(
-                      borderRadius: BorderRadius.all(Radius.circular(50.0)),
+                      borderRadius: BorderRadius.all(Radius.circular(widget.cornerRadius)),
                       color: widget.buttonColor,
                       boxShadow: [
                         new BoxShadow(
