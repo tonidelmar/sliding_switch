@@ -7,8 +7,8 @@ class SlidingSwitch extends StatefulWidget {
   final bool value;
   final String textOff;
   final String textOn;
-  final IconData iconOff;
-  final IconData iconOn;
+  final IconData? iconOff;
+  final IconData? iconOn;
   final double contentSize;
   final Duration animationDuration;
   final Color colorOn;
