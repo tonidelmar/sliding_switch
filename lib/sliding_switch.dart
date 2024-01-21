@@ -104,8 +104,8 @@ Widget build(BuildContext context) {
       padding: EdgeInsets.all(2),
       child: Stack(children: <Widget>[
         Transform.translate(
-            offset: Offset(value * (widget.width - (widget.width * 0.5 - 4)) - 2, 0),
-          child: Container(
+            offset: Offset(value * (widget.width - (widget.width * 0.5 - 4) - 4), 0),
+            child: Container(
             height: widget.height,
             width: widget.width * 0.5 - 4,
             decoration: BoxDecoration(
