@@ -80,93 +80,94 @@ class _SlidingSwitch extends State<SlidingSwitch>
   }
 
   @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-        onDoubleTap: () {
-          _action();
-          if (widget.onDoubleTap != null) widget.onDoubleTap();
-        },
-        onTap: () {
-          _action();
-          if (widget.onTap != null) widget.onTap();
-        },
-        onPanEnd: (details) {
-          _action();
-          if (widget.onSwipe != null) widget.onSwipe();
-        },
-        child: Container(
-          height: widget.height,
-          width: widget.width,
-          decoration: BoxDecoration(
-              color: widget.background,
-              
-              borderRadius: BorderRadius.circular(widget.cornerRadius)),
-          padding: EdgeInsets.all(2),
-          child: Stack(children: <Widget>[
-            Transform.translate(
-                offset: Offset(((widget.width * 0.5) * value - (2 * value)), 0),
-                child: Container(
-                  height: widget.height,
-                  width: widget.width * 0.5 - 4,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.all(Radius.circular(widget.cornerRadius)),
-                      color: widget.buttonColor,
-                      boxShadow: [
-                        new BoxShadow(
-                          color: Colors.black.withOpacity(0.2),
-                          offset: Offset(0, 10),
-                          blurRadius: 20.0,
-                        ),
-                      ]),
-                )),
-            Row(
-              children: [
-                Expanded(
-                  child: Center(
-                    child: widget.iconOff == null
-                      ? Text(
-                          widget.textOff,
-                          style: TextStyle(
-                              color: turnState
-                                  ? widget.inactiveColor
-                                  : widget.colorOff,
-                              fontSize: widget.contentSize,
-                              fontWeight: FontWeight.w600),
-                        )
-                      : Icon(widget.iconOff,
-                          semanticLabel: widget.textOff,
-                          size: widget.contentSize,
-                          color: turnState
-                              ? widget.inactiveColor
-                              : widget.colorOff,
-                      ),
-                  ),
+Widget build(BuildContext context) {
+  return GestureDetector(
+    onDoubleTap: () {
+      _action();
+      if (widget.onDoubleTap != null) widget.onDoubleTap();
+    },
+    onTap: () {
+      _action();
+      if (widget.onTap != null) widget.onTap();
+    },
+    onPanEnd: (details) {
+      _action();
+      if (widget.onSwipe != null) widget.onSwipe();
+    },
+    child: Container(
+      height: widget.height,
+      width: widget.width,
+      decoration: BoxDecoration(
+        color: widget.background,
+        borderRadius: BorderRadius.circular(widget.cornerRadius),
+      ),
+      padding: EdgeInsets.all(2),
+      child: Stack(children: <Widget>[
+        Transform.translate(
+          offset: Offset(((widget.width * 0.5) * value - (2 * value)), 0),
+          child: Container(
+            height: widget.height,
+            width: widget.width * 0.5 - 4,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.all(Radius.circular(widget.cornerRadius)),
+              color: widget.buttonColor,
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black.withOpacity(0.2),
+                  offset: Offset(0, 10),
+                  blurRadius: 20.0,
                 ),
-                Expanded(
-                  child: Center(
-                    child: widget.iconOn == null
-                    ? Text(
-                        widget.textOn,
-                        style: TextStyle(
-                            color:
-                                turnState ? widget.colorOn : widget.inactiveColor,
-                            fontSize: widget.contentSize,
-                            fontWeight: FontWeight.w600),
-                      )
-                    : Icon(widget.iconOn,
-                          semanticLabel: widget.textOn,
-                          size: widget.contentSize,
-                          color: turnState
-                              ? widget.colorOn
-                              : widget.inactiveColor,
-                      ),
-                  ),
-                )
               ],
-            )
-          ]),
-        ));
-  }
+            ),
+          ),
+        ),
+        Row(
+          children: [
+            Expanded(
+              child: Center(
+                child: widget.iconOff == null
+                  ? Text(
+                      widget.textOff,
+                      style: TextStyle(
+                        color: turnState ? widget.inactiveColor : widget.colorOff,
+                        fontSize: widget.contentSize,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    )
+                  : Icon(
+                      widget.iconOff,
+                      semanticLabel: widget.textOff,
+                      size: widget.contentSize,
+                      color: turnState ? widget.inactiveColor : widget.colorOff,
+                    ),
+              ),
+            ),
+            Expanded(
+              child: Center(
+                child: widget.iconOn == null
+                  ? Text(
+                      widget.textOn,
+                      style: TextStyle(
+                        color: turnState ? widget.colorOn : widget.inactiveColor,
+                        fontSize: widget.contentSize,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    )
+                  : Icon(
+                      widget.iconOn,
+                      semanticLabel: widget.textOn,
+                      size: widget.contentSize,
+                      color: turnState ? widget.colorOn : widget.inactiveColor,
+                    ),
+              ),
+            ),
+          ],
+        ),
+      ]),
+    ),
+  );
+}
+
 
   _action() {
     _determine(changeState: true);
